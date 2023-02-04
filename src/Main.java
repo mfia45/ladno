@@ -5,22 +5,21 @@ public class Main {
     public static void main(String[] args){
         Scanner vvod = new Scanner(System.in);
         String input = vvod.nextLine();
-        if (calc(input).length()>3) {
-            try {
-                throw new Exception();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
 
         System.out.println(calc(input));
-
     }
     static boolean arab;
     public static String calc(String input) {
         String s = "";
-        String[] znaki;
-        znaki = input.split(" ");
+        String[] znaki = input.split(" ");
+        if (znaki.length != 3){
+            try {
+                throw new Exception();
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         String x = znaki[0];
         String[] xx = ar(x);
         String y = znaki[2];
@@ -35,6 +34,13 @@ public class Main {
                 case "-" -> result = x1 - y1;
                 case "/" -> result = x1 / y1;
                 case "*" -> result = x1 * y1;
+                default -> {
+                    try {throw new Exception();
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
             if (Objects.equals(xx[1], "true")) {
                 s = IntToRoman(result);
